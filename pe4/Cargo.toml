@@ -1,0 +1,8 @@
+[package]
+name = "pe4"
+version = "0.1.0"
+authors = ["Jon Moroney <darakian@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+itertools = "0.8.0"
