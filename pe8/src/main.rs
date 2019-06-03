@@ -27,7 +27,6 @@ impl Fiver{
 
     fn update(&mut self) {
         self.largest = cmp::max(self.largest, self.stack.iter().fold(1, |acc, x| acc*x));
-        //println!("==> {:?}", self.largest);
     }
 
     fn get(self) -> u32{

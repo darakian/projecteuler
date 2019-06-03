@@ -106,7 +106,7 @@ fn main() {
             result[i]+=v[i];
         }
     }
-    for i in result.iter(){
-        print!("{}", i);
+    for i in 0..=10{
+        print!("{}", result[i]);
     }
 }
