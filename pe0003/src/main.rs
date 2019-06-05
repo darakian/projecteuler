@@ -57,7 +57,7 @@ fn pollard_rholler(mut n: u128) -> Vec<u128>{
 
 fn is_prime(n: u128) -> bool{
     let mut i = 2;
-    while i*i < n{
+    while i*i <= n{
         if n % i == 0{
             return false;
         }
