@@ -1,9 +1,7 @@
 fn main() {
-    // println!("{:?}", pollard_rho(10402).unwrap());
-    // println!("{:?}", pollard_rho(1486).unwrap());
     let mut v = pollard_rholler(600851475143);
     v.sort_unstable();
-    println!("{:?}", v);
+    println!("{:?}", v.pop().unwrap());
 }
 
 fn gcd(mut n: u128, mut m: u128) -> u128 {
@@ -39,7 +37,6 @@ fn pollard_rholler(mut n: u128) -> Vec<u128>{
     let mut prime_factors = Vec::new();
     if is_prime(n) {prime_factors.push(n); return prime_factors}
     while !is_prime(n){
-        //println!("{:?}", n);
         if n.is_power_of_two(){
             while n>=2{
                 prime_factors.push(2);
