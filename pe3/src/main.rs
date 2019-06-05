@@ -1,6 +1,7 @@
 fn main() {
-    println!("{}", gcd(18,12));
-    println!("{:?}", pollard_rho(8051).unwrap());
+    // println!("{:?}", pollard_rho(10402).unwrap());
+    // println!("{:?}", pollard_rho(1486).unwrap());
+    println!("{:?}", pollard_rholler(112));
 }
 
 fn gcd(mut n: u32, mut m: u32) -> u32 {
@@ -20,7 +21,6 @@ fn pollard_rho(n: u32) -> Option<u32>{
         x = pollard_rho_helper(x, n);
         y = pollard_rho_helper(pollard_rho_helper(y, n), n);
         d = gcd((x as i64-y as i64).abs() as u32, n);
-        println!("d: {:?} x: {} y {}", d, x, y);
     }
     if d == n{
         return None
@@ -31,4 +31,35 @@ fn pollard_rho(n: u32) -> Option<u32>{
     fn pollard_rho_helper(x: u32, n: u32) -> u32{
         (x*x+1)%n
     }
+}
+
+fn pollard_rholler(mut n: u32) -> Vec<u32>{
+    let mut prime_factors = Vec::new();
+    if is_prime(n) {prime_factors.push(n); return prime_factors}
+    while !is_prime(n){
+        println!("{:?}", n);
+        if n.is_power_of_two(){
+            while n>=2{
+                prime_factors.push(2);
+                n = n/2;
+            }
+        } else {
+            let p = pollard_rho(n).unwrap();
+            prime_factors.push(p);
+            n = n/p;
+        }
+    }
+    prime_factors
+
+}
+
+fn is_prime(n: u32) -> bool{
+    let mut i = 2;
+    while i*i < n{
+        if n % i == 0{
+            return false;
+        }
+        i+=1;
+    }
+    true
 }
