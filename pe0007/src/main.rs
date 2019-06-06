@@ -1,6 +1,5 @@
 fn main() {
     let mut primes = n_primes(10001);
-    println!("len: {:?}", primes.len());
     println!("{:?}", primes.pop().unwrap());
 }
 
@@ -18,12 +17,13 @@ fn is_prime(n: u64) -> bool{
 fn n_primes(n: u64) -> Vec<u64>{
     let mut ret_vec = vec![];
     if n == 0 {return ret_vec}
-    let mut iter = 2;
+    ret_vec.push(2);
+    let mut iter = 3;
     while ret_vec.len() < n as usize{
         if is_prime(iter){
             ret_vec.push(iter);
         }
-        iter+=1;
+        iter+=2;
     }
     ret_vec
 }

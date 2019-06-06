@@ -1,4 +1,3 @@
-use gcd::Gcd;
 
 fn main() {
     let the_value = least_common(1, 
@@ -25,5 +24,14 @@ fn main() {
 }
 
 fn least_common(n: u32, m: u32) -> u32{
-    (n*m) / n.gcd(m)
+    (n*m) / gcd(n, m)
+}
+
+fn gcd(mut n: u32, mut m: u32) -> u32 {
+    while n % m != 0 {
+        let tmp = m;
+        m = n % m;
+        n = tmp;
+    }
+    m
 }
