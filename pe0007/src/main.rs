@@ -4,12 +4,13 @@ fn main() {
 }
 
 fn is_prime(n: u64) -> bool{
-    let mut i = 2;
+    if n == 1 {return false}
+    let mut i = 3;
     while i*i <= n{
         if n % i == 0{
             return false;
         }
-        i+=1;
+        i+=2;
     }
     true
 }
