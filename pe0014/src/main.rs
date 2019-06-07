@@ -1,11 +1,12 @@
 fn main() {
     //println!("Length = {:?}", collatz_length(13).unwrap());
     let mut lengths = [0; 1000001];
-    let mut longest = 0;
-    for i in (1..=1000000) {
+    let mut longest = (0,0);
+    for i in 1..=1000000 {
         lengths[i] = collatz_length(i, &lengths).unwrap();
-        if lengths[i] > longest{
-            longest = lengths[i];
+        if lengths[i] > longest.0{
+            longest.0 = lengths[i];
+            longest.1 = i;
         }
     }
     println!("Longest = {:?}", longest);
