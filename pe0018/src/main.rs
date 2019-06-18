@@ -4,7 +4,7 @@ use std::io::Read;
 fn get_level(index: u32) -> u32{
     let mut candidate_level = tri_num(1).unwrap();
     let mut level = 1;
-    while index >= candidate_level {
+    while index > candidate_level {
         level+=1;
         candidate_level = tri_num(level).unwrap();
     }
