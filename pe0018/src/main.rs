@@ -43,15 +43,33 @@ fn main() {
     }
     let mut path = Vec::new();
     let mut index = 1;
-    while index <= tree_vec.len() as u32{
+    while index < tree_vec.len() as u32{
         path.push(tree_vec[index as usize]);
-        index = right_child_index(index);
+        let left_c_i = left_child_index(index);
+        let right_c_i = right_child_index(index);
+        let next = best_next(left_c_i, right_c_i, &tree_vec);
+        if next == None {break}
+        else {index = next.unwrap()}
     }
-    println!("{:?}", path);
-    // for i in 1..=10{
-    //     print!("i = {:?} ", i);
-    //     print!("tri(i) = {:?} ", tri_num(i));
-    //     println!("level(i) = {:?}", get_level(i));
-    // }
-    
+    println!("{:?}.len({:?}).sum({:?})", path, path.len(), path.iter().sum::<u32>());    
+}
+
+fn best_next(left: u32, right: u32, vec: &Vec<u32>) -> Option<u32>{
+    let max = vec.len() as u32;
+    if left > max && right < max{
+        return Some(right)
+    } else if left < max && right > max{
+        return Some(left)
+    } else if left > max && right > max{
+        return None
+    } else if left < max && right < max{
+        let l_v = vec[left as usize];
+        let r_v = vec[right as usize];
+        if l_v > r_v {
+            return Some(left)
+        } else {
+           return Some(right) 
+        }
+    }
+    None
 }
