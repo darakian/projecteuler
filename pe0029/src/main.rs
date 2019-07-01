@@ -10,7 +10,7 @@ fn main() {
     println!("Hello, world! {}", the_nums.len());
 }
 
-fn pow_I_guess(a: u32, b: u32) -> Vec<u8>{
+fn pow_I_guess(a: u32, b: u32) -> u32{
     let mut ret = Vec::new();
     let mut i = 0;
     while i < b{
@@ -19,5 +19,5 @@ fn pow_I_guess(a: u32, b: u32) -> Vec<u8>{
         }
         i+=1;
     }
-    ret
+    ret.len() as u32
 }
