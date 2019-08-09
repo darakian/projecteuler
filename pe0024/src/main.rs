@@ -1,5 +1,6 @@
 fn main() {
-    println!("{:?}", combinations(vec!['0','1','2']));
+    let lots = combinations(vec!['0','1','2','3','4','5','6','7','8','9']);
+    println!("{:?}", lots[999999]);
 }
 
 fn combinations(invec: Vec<char>) -> Vec<String> {
