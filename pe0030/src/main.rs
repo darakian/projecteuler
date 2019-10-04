@@ -1,21 +1,22 @@
 fn main() {
     let mut fifths = vec![];
-    for mut i in 10000..=99999 {
-        let original = i;
-        let ones: u32 = i % 10;
-        i = i/10;
-        let tens: u32 = i % 10;
-        i = i/10;
-        let hundreds: u32 = i % 10;
-        i = i/10;
-        let thous: u32 = i % 10;
-        i = i/10;
-        let ten_thous: u32 = i % 10;
-        let fifth_power = ones.pow(5) + tens.pow(5) + hundreds.pow(5) + thous.pow(5) + ten_thous.pow(5);
-        if original == fifth_power {
-            fifths.push(original);
-            println!("{:?}", original);
+    for i in 2..=9999999{
+        if i == digits(i)
+                .iter()
+                .map(|x| x.pow(5))
+                .sum(){
+                    fifths.push(i);
+                    println!("{:?}", i);
         }
     }
-    println!("{:?}", fifths.iter().sum::<u32>());
+    println!("Sum: {:?}", fifths.iter().sum::<u32>());
+}
+
+fn digits(mut i: u32) -> Vec<u32>{
+    let mut out = vec![];
+    while i > 0{
+        out.push(i % 10);
+        i = i/10;
+    }
+    out
 }
