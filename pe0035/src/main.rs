@@ -1,17 +1,26 @@
+use itertools::Itertools;
+
 fn main() {
+    let break_point = 100;
     let mut pi = PrimeIter::new();
     let mut primes = vec![];
-    let mut circular_primes = vec![];
+    //let mut circular_primes = vec![];
     let mut current = 0;
     loop{
         current = pi.next().unwrap();
-        if 9 < current < 1000000{
+        if current < break_point{
             primes.push(current);
+        } else if current >= break_point{
+            break
         }
     }
-    for p in primes.iter(){
+    for p in primes.into_iter(){
+        println!("p:{:?}", p);
         let p_d = digits(p);
-
+        let candidates = p_d.iter().combinations(p_d.len());
+        for c in candidates{
+            println!("{:?}", vec_to_num(c));
+        }
     }
 }
 
@@ -57,7 +66,7 @@ fn is_prime(n: u64) -> bool{
     true
 }
 
-fn digits(mut i: u32) -> Vec<u32>{
+fn digits(mut i: u64) -> Vec<u64>{
     let mut out = vec![];
     while i > 0{
         out.push(i % 10);
@@ -66,6 +75,12 @@ fn digits(mut i: u32) -> Vec<u32>{
     out
 }
 
-fn possilble_nums(Vec<u32>) -> Vec<u32>{
-    
+fn vec_to_num(input: Vec<&u64>) -> u64{
+    let mut factor = 0;
+    let mut sum = 0;
+    for i in (0..input.len()).rev(){
+        sum = sum + input[i]*10_u64.pow(factor);
+        factor+=1;
+    }
+    sum
 }
