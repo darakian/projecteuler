@@ -3,7 +3,7 @@ use std::collections::HashSet;
 fn main() {
     let mut max_tot = 1.0;
     let mut max_n = 1;
-    (1..=10)
+    (1..=1000000)
         .for_each(|x| {
             let tmp = n_over_tot(x);
             if tmp>max_tot{
@@ -11,12 +11,12 @@ fn main() {
                     max_n = x;
                 }
             });
-    //println!("n:{}, n/tot:{}", max_n, max_tot);
+    println!("n:{}, n/tot:{}", max_n, max_tot);
 }
 
 fn n_over_tot(n: u64) -> f64{
     let tot = totient(n);
-    println!("n:{} tot:{:?}", n, tot);
+    //println!("n:{} tot:{:?}", n, tot);
     n as f64/tot as f64
 }
 
@@ -33,7 +33,7 @@ fn totient(n: u64) -> u64{
 }
 
 fn prime_divisors(n: u64) -> HashSet<u64>{
-    (1..=n)
+    (1..(n as f64).sqrt() as u64)
         .filter(|x| n%x==0)
         .filter(|x| is_prime(*x))
         .collect()
