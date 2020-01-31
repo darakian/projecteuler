@@ -1,14 +1,7 @@
 fn main() {
     println!("Hello, world!");
     let mut pi = PrimeIter::new();
-    let mut vec = vec![];
-    while vec.len() < 11{
-        let candidate = pi.next().unwrap();
-        if candidate > 7 {
-            vec.push(candidate);
-            println!("Adding {:?}. Len: {}", candidate, vec.len());
-        }
-    }
+    let vec: Vec<u64> = pi.take(11).collect();
     println!("{:?}", vec.iter().sum::<u64>());
 }
 
@@ -47,6 +40,9 @@ fn is_prime(n: u64) -> bool{
 }
 
 fn is_truncatable_prime(n: u64) -> bool{
+    if n < 10 {
+        return false
+    }
     is_t_l_to_r(n) && is_t_r_to_l(n)
 }
 
