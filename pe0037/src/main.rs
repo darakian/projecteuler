@@ -1,6 +1,5 @@
 fn main() {
-    println!("Hello, world!");
-    let mut pi = PrimeIter::new();
+    let pi = PrimeIter::new();
     let vec: Vec<u64> = pi.take(11).collect();
     println!("{:?}", vec.iter().sum::<u64>());
 }
@@ -57,7 +56,7 @@ fn is_t_r_to_l(mut n: u64) -> bool{
     true
 }
 
-fn is_t_l_to_r(mut n: u64) -> bool{
+fn is_t_l_to_r(n: u64) -> bool{
     let digits: Vec<_> = n.to_string().chars().map(|d| d.to_digit(10).unwrap()).collect();
     let mut tmp = 0;
     for element in digits.iter().enumerate(){
