@@ -11,11 +11,13 @@ impl BigBaduInt{
 
     pub fn add(&mut self, value: &str) -> (){
         let mut carry = None;
+
         for (index, c) in value.chars().rev().enumerate(){
             carry = self.add_place(index, c, carry);
         }
         if carry.is_some(){
-            self.digits.push(carry.unwrap());
+            self.add(&(carry.unwrap().to_string() + &"0".repeat(value.len())));
+            
         }
     }
 
@@ -27,7 +29,7 @@ impl BigBaduInt{
     }
 
     fn add_place(&mut self, index: usize, num: char, carry: Option<char>) -> Option<char>{
-        let last = if let Some(x) = self.digits.get(index){
+        if let Some(x) = self.digits.get(index){
             let value = x;
             let ival = value.to_string().parse::<u32>().unwrap();
             let inum = num.to_string().parse::<u32>().unwrap();
