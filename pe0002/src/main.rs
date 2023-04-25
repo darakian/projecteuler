@@ -3,11 +3,11 @@ fn main() {
     let mut i = 1;
     let mut j = 1;
     while let current = fib_next(i, j){
-        if current%2 == 0{
-            the_sum+=current;
-        }
         if current >= 4000000{
             break;
+        }
+        if current%2 == 0{
+            the_sum+=current;
         }
         i = j;
         j = current;
