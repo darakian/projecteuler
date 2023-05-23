@@ -2,8 +2,6 @@ use itertools::Itertools;
 
 fn main() {
     let mut largest = 0;
-    let combs: Vec<(_, _)> = (100..999).tuple_combinations().unique().collect();
-    println!("{:?}", combs.len());
     for (x, y) in (100..999).tuple_combinations() {
         if x*y > largest && is_palindrome(x*y){
             largest = x*y
